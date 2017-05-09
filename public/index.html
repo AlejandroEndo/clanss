@@ -9,17 +9,81 @@
 <body>
     <div ng-app="myApp">
         <div ng-controller="myCtrl">
-            <input type="checkbox" name="accion" value="1" ng-model="accion"/>accion<br />
-            <input type="checkbox" name="shooter" value="1"  ng-model="shooter"/>shooter<br />
-            <input type="checkbox" name="estrategia" value="1"  ng-model="estrategia"/>estrategia<br />
-            <input type="checkbox" name="simulacion" value="1"  ng-model="simulacion"/>simulacion<br />
-            <input type="checkbox" name="deporte" value="1"  ng-model="deporte"/>deporte<br />
-            <input type="checkbox" name="carrera" value="1"  ng-model="carrera"/>carrera<br />
-            <input type="checkbox" name="aventura" value="1"  ng-model="aventura"/>aventura<br />
-            <input type="checkbox" name="rol" value="1"  ng-model="rol"/>rol<br />
-            <input type="checkbox" name="rpg" value="1"  ng-model="rpg"/>rpg<br />
+            <form>
+                Accion
+                <input type="radio" name="accion" value="-1" ng-model="accion" checked>malo
+                <input type="radio" name="accion" value="0" ng-model="accion">regular
+                <input type="radio" name="accion" value="1" ng-model="accion">bueno
+            </form>
+            <hr>
+            <br>
+            <form>
+                shooter
+                <input type="radio" name="shooter" value="-1" ng-model="shooter" checked>malo
+                <input type="radio" name="shooter" value="0" ng-model="shooter">regular
+                <input type="radio" name="shooter" value="1" ng-model="shooter">bueno
+            </form>
+            <hr>
+            <br>
+            <form>
+                estrategia
+                <input type="radio" name="estrategia" value="-1" ng-model="estrategia" checked>malo
+                <input type="radio" name="estrategia" value="0" ng-model="estrategia">regular
+                <input type="radio" name="estrategia" value="1" ng-model="estrategia">bueno
+            </form>
+            <hr>
+            <br>
+            <form>
+                simulacion
+                <input type="radio" name="simulacion" value="-1" ng-model="simulacion" checked>malo
+                <input type="radio" name="simulacion" value="0" ng-model="simulacion">regular
+                <input type="radio" name="simulacion" value="1" ng-model="simulacion">bueno
+            </form>
+            <hr>
+            <br>
+            <form>
+                deporte
+                <input type="radio" name="deporte" value="-1" ng-model="deporte" checked>malo
+                <input type="radio" name="deporte" value="0" ng-model="deporte">regular
+                <input type="radio" name="deporte" value="1" ng-model="deporte">bueno
+            </form>
+            <hr>
+            <br>
+            <form>
+                carrera
+                <input type="radio" name="carrera" value="-1" ng-model="carrera" checked>malo
+                <input type="radio" name="carrera" value="0" ng-model="carrera">regular
+                <input type="radio" name="carrera" value="1" ng-model="carrera">bueno
+            </form>
+            <hr>
+            <br>
+            <form>
+                aventura
+                <input type="radio" name="aventura" value="-1" ng-model="aventura" checked>malo
+                <input type="radio" name="aventura" value="0" ng-model="aventura">regular
+                <input type="radio" name="aventura" value="1" ng-model="aventura">bueno
+            </form>
+            <hr>
+            <br>
+            <form>
+                rol
+                <input type="radio" name="rol" value="-1" ng-model="rol" checked>malo
+                <input type="radio" name="rol" value="0" ng-model="rol">regular
+                <input type="radio" name="rol" value="1" ng-model="rol">bueno
+            </form>
+            <hr>
+            <br>
+            <form>
+                rpg
+                <input type="radio" name="rpg" value="-1" ng-model="rpg" checked>malo
+                <input type="radio" name="rpg" value="0" ng-model="rpg">regular
+                <input type="radio" name="rpg" value="1" ng-model="rpg">bueno
+            </form>
+            <hr>
+            <br>
             <input type="submit" value="go!" ng-click="sendInfo()"/>
-
+            <hr>
+            <br>
             <p>{{data}}</p>
         </div>
     </div>

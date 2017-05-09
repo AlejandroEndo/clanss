@@ -10,7 +10,7 @@ app.controller('myCtrl', function ($window, $scope, $http) {
     });
     
     $scope.sendInfo = function () {
-        $scope.data = {
+        var data = {
             accion : $scope.accion,
             shooter : $scope.shooter,
             estrategia : $scope.estrategia,
@@ -23,7 +23,9 @@ app.controller('myCtrl', function ($window, $scope, $http) {
             id_usuario: "yo"
         };
 
-        $http.get('filtro/informacion', JSON.stringify(data)).then(function (res) {
+        console.log($scope.accion);
+
+        $http.post('filtro/informacion', JSON.stringify(data)).then(function (res) {
             $scope.data = res.data;
         });
     };
