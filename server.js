@@ -3,16 +3,30 @@
  */
 
 var express = require('express');
+var bodyparser = require('body-parser');
+var morgan = require('morgan');
+
+var db = require('./data-base');
+var filtro = require('./routes/filtro-router');
+
 var app = express();
 
-var port = process.env.PORT || 8080;
+app.use(morgan('dev'));
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended: true}));
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', function(req, res) {
-    res.render('index');
-});
+app.use('/filtro', filtro);
 
-app.listen(port, function() {
-    console.log('app running');
+var port = process.env.PORT || 8080;
+
+db.poolConnection(function (err) {
+    if(err){
+        console.log("Error conectando a la base de datos");
+    } else {
+        app.listen(port, function() {
+            console.log('app running');
+        });
+    }
 });
