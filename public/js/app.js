@@ -11,14 +11,12 @@ app.controller('myCtrl', function ($window, $scope, $http) {
     
     $scope.sendInfo = function () {
         var data = {
-            accion : $scope.accion,
             shooter : $scope.shooter,
             estrategia : $scope.estrategia,
             simulacion : $scope.simulacion,
             deporte : $scope.deporte,
             carrera : $scope.carrera,
             aventura : $scope.aventura,
-            rol : $scope.rol,
             rpg : $scope.rpg,
             id_usuario: "yo"
         };

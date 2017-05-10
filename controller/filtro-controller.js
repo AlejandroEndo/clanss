@@ -9,9 +9,11 @@ db.getConnection().query('SELECT * FROM ');
 };
 
 exports.addPreferences = function (data, done) {
-    db.getConnection().query('INSERT INTO clanss-gustos SET ?', data, function (err, rows) {
-        if(err)return done(err);
-
+    db.getConnection().query('INSERT INTO clanssgustos SET ?', data, function (err, rows) {
+        if(err){
+            console.log(err);
+            return done(err);
+        }
         done(null, rows);
     });
 };
