@@ -27,4 +27,12 @@ app.controller('myCtrl', function ($window, $scope, $http) {
             $scope.data = res.data;
         });
     };
+
+    $scope.get_clan = function () {
+        $http.get('filtro/get_clan').then(function (res) {
+            $http.post('filtro/recomendar', JSON.stringify(res.data)).then(function (res) {
+                $scope.data = res.data;
+            })
+        });
+    };
 });
