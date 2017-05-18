@@ -3,7 +3,8 @@
  */
 
 var db = require('../data-base');
-
+var pito = [];
+var subPito;
 exports.getData = function (callback) {
     db.getConnection().query('SELECT * FROM ');
 };
@@ -43,32 +44,31 @@ exports.recomendar = function (data, callback) {
     var av = 0;
     var r  = 0;
 
-    for(i = 0; i < data.length; i++){
+    for(var i = 0; i < data.length; i++){
+        console.log("DATA");
+        console.log(data[i].id_usuario);
         db.getConnection().query('SELECT * FROM clanssgustos WHERE id_usuario = ?', data[i].id_usuario, function (err, rows) {
-            console.log(rows[0]);
+            //console.log(rows);
 
-            if(rows[0].shooter > -1){
-                s += rows.shooter;
+            var string = JSON.stringify(rows);
+            var result = JSON.parse(string);
+
+            //console.log("Valor de MYSQL");
+            console.log(result[0]);
+            console.log(i);
+
+            if(result[0] != undefined) {
+                s += result[0].shooter;
+                e += result[0].estrategia;
+                si += result[0].simulacion;
+                d += result[0].deporte;
+                c += result[0].carrera;
+                av += result[0].aventura;
+                r += result[0].rpg;
             }
-            if(rows.estrategia > -1){
-                e += rows.estrategia;
-            }
-            if(rows.simulacion > -1){
-                si += data[i].simulacion;
-            }
-            if(rows.deporte > -1){
-                d += data[i].deporte;
-            }
-            if(rows.carrera > -1){
-                c += data[i].carrera;
-            }
-            if(rows.aventura > -1){
-                av += data[i].aventura;
-            }
-            if(rows.rpg > -1){
-                r += data[i].rpg;
-            }
+
         });
+
     }
 
     var done = {
@@ -80,6 +80,9 @@ exports.recomendar = function (data, callback) {
         aventura: av,
         rpg: r
     };
+
+    //console.log("Resultado obtenido");
+    //console.log(done);
 
     callback(false, done);
 };
