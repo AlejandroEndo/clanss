@@ -20,7 +20,6 @@ router.post('/informacion', function (req, res) {
 
     controller.addPreferences(data, function (err, recomendacion) {
         if(!err) {
-
             res.json(recomendacion);
         } else {
             res.json(err);}
@@ -35,12 +34,46 @@ router.get('/get_clan', function (req, res) {
 
 router.post('/recomendar', function (req, res) {
     var data = req.body;
-    controller.recomendar(data, function (err, recomendacion) {
-        if(!err){
-            res.json(recomendacion);
-        } else {
-            res.json(err);
+    var index = 0;
+
+    var s = 0;
+    var e = 0;
+    var si = 0;
+    var d = 0;
+    var c = 0;
+    var a = 0;
+    var rpg = 0;
+
+    controller.recomendar(data, function (err, r) {
+        index++;
+        console.log(r);
+        if(r != undefined) {
+            s += r.shooter;
+            e += r.estrategia;
+            si += r.simulacion;
+            d += r.deporte;
+            c += r.carrera;
+            a += r.aventura;
+            rpg += r.rpg;
         }
+
+        if(index >= data.length){
+            if(!err){
+                var recomendar = {
+                    shooter: s,
+                    estrategia: e,
+                    simulacion: si,
+                    deporte: d,
+                    carrera: c,
+                    aventura: a,
+                    rpg: rpg,
+                };
+                res.json(recomendar);
+            } else {
+                res.json(err);
+            }
+        }
+
     });
 });
 
