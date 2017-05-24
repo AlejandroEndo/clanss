@@ -12,12 +12,15 @@
 
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/estilos.css">
-        <script src="../../../Final_CHI/clans/js/jquery.js"></script>
-        <script src="../../../Final_CHI/clans/js/bootstrap.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400, 600" rel="stylesheet">
 
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="angular/app.js"></script>
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.js"></script>
+
     </head>
-    <body class="loginB">
+    <body class="loginB" ng-app="myApp">
 
         <nav class="navbar navbar-default navbar-fixed-top menu">
             <div class="container">
@@ -28,12 +31,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand logo" href="index.html"><img src="img/logo-05.png"></a>
+                    <a class="navbar-brand logo" href="inicio.html"><img src="img/logo-05.png"></a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="iniciar coloruno"><a href="login.html">Iniciar
+                        <li class="iniciar coloruno"><a href="index.html">Iniciar
                             Sesión</a></li>
                     </ul>
                 </div>
@@ -41,31 +44,40 @@
         </nav>
 
         <section class="loginS">
-            <div class="container">
+            <div class="container" ng-controller="registroCtrl">
                 <div class="row">
                     <div class="col-8">
                         <p class="yo"><img src="img/logo-05.png"></p>
                         <form class=" FormularioLogin">
 
-                            <p class="pBt"><input class="campoP" type="text" name="nickName" placeholder="Nickname"> <br></p>
+                            <p class="pBt"><input class="campoP" type="text" name="nick" placeholder="Nickname" ng-model="nick"> <br></p>
 
-                            <p class="pBt" ><input class="campoP" type="text" name="nombre" placeholder="Nombre"> <br></p>
+                            <p class="pBt" ><input class="campoP" type="text" name="name" placeholder="Nombre" ng-model="name"> <br></p>
 
-                            <p class="pBt" ><input class="campoP" type="email" name="correo" placeholder="Correo electrónico"> <br></p>
+                            <p class="pBt" ><input class="campoP" type="email" name="mail" placeholder="Correo electrónico" ng-model="mail"> <br></p>
 
-                            <p class="pBt"><input class="campoP" type="password" name="contraseña" placeholder= "Contraseña"></p>
+                            <p class="pBt"><input class="campoP" type="password" name="pass" placeholder= "Contraseña" ng-model="pass"></p>
 
-                            <p class="pBt">  
-                               <label class="fileContainer">
-                                <input type="file"/>
-                            </label></p>
-                            
-                            
+                            <div class="form-group flecha">
+                                <label class="label" for="sel1 ">Tipo de sistema:</label>
+                                <select class="form-control campoP leftoP" id="sel1" ng-model="os.singleSelect">
+                                    <option>Windows</option>
+                                    <option>MAC</option>
+                                </select>
+                            </div>
 
+                            <div class="form-group flecha">
+                                <label class="label" for="sel1 ">Memoria RAM:</label>
+                                <select class="form-control campoP leftoP" id="sel1" ng-model="ram.singleSelect">
+                                    <option>1024</option>
+                                    <option>2048</option>
+                                    <option>4096</option>
+                                    <option>8192</option>
+                                    <option>16384</option>
+                                </select>
+                            </div>
 
-                            <p class="pBt"><input class="bRegistroL" type="submit" formaction="computador.html" value="Registrarse"></p>
-
-
+                            <p class="pBt"><input class="bRegistroL" type="submit"  value="Registrarse" ng-click="registrar()"></p>
 
                             <p class="pBt pLR">¿Ya tienes cuenta?&nbsp;&nbsp;<input class="bRegistroLR" type="submit" formaction="login.html" value="Iniciar Sesión"></p>
                         </form>

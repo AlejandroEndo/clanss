@@ -8,6 +8,7 @@ var morgan = require('morgan');
 
 var db = require('./data-base');
 var filtro = require('./routes/filtro-router');
+var user = require('./routes/user-router');
 
 var app = express();
 
@@ -17,6 +18,7 @@ app.use(bodyparser.urlencoded({extended: true}));
 
 app.use(express.static(__dirname + '/public'));
 
+app.use('/user', user);
 app.use('/filtro', filtro);
 
 var port = process.env.PORT || 8080;
@@ -26,7 +28,7 @@ db.poolConnection(function (err) {
         console.log("Error conectando a la base de datos");
     } else {
         app.listen(port, function() {
-            console.log('app running');
+            console.log('app running on http://localhost:' + port + '/');
         });
     }
 });

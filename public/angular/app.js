@@ -4,6 +4,43 @@
 
 var app = angular.module('myApp', []);
 
+app.controller('loginCtrl', function ($window, $scope, $http) {
+    $scope.login = function () {
+        var data = {
+            nick : $scope.nick,
+            pass: $scope.pass
+        };
+
+        console.log(data);
+
+        $http.post('/user/login', JSON.stringify(data)).then(function (res) {
+            console.log(res);
+            $window.location.href = '/inicio.html';
+        });
+    };
+});
+
+app.controller('registroCtrl', function ($window, $scope, $http) {
+
+    $scope.registrar = function () {
+        var data = {
+            nick: $scope.nick,
+            name: $scope.name,
+            mail: $scope.mail,
+            pass: $scope.pass,
+            os: $scope.os.singleSelect,
+            ram: $scope.ram.singleSelect
+        };
+
+        console.log(data);
+
+        $http.post('user/registro', JSON.stringify(data)).then(function (res) {
+            console.log(res);
+            //$window.location.href = 'computador.html';
+        });
+    }
+});
+
 app.controller('myCtrl', function ($window, $scope, $http) {
     $http.get('/filtro/data').then(function (res) {
         $scope.variable = res;

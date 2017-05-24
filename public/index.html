@@ -1,77 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CLANS</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script src="angular/app.js"></script>
-</head>
-<body>
-    <div ng-app="myApp">
-        <div ng-controller="myCtrl">
-            <form>
-                shooter
-                <input type="radio" name="shooter" value="-1" ng-model="shooter" checked>malo
-                <input type="radio" name="shooter" value="0" ng-model="shooter">regular
-                <input type="radio" name="shooter" value="1" ng-model="shooter">bueno
-            </form>
-            <hr>
-            <br>
-            <form>
-                estrategia
-                <input type="radio" name="estrategia" value="-1" ng-model="estrategia" checked>malo
-                <input type="radio" name="estrategia" value="0" ng-model="estrategia">regular
-                <input type="radio" name="estrategia" value="1" ng-model="estrategia">bueno
-            </form>
-            <hr>
-            <br>
-            <form>
-                simulacion
-                <input type="radio" name="simulacion" value="-1" ng-model="simulacion" checked>malo
-                <input type="radio" name="simulacion" value="0" ng-model="simulacion">regular
-                <input type="radio" name="simulacion" value="1" ng-model="simulacion">bueno
-            </form>
-            <hr>
-            <br>
-            <form>
-                deporte
-                <input type="radio" name="deporte" value="-1" ng-model="deporte" checked>malo
-                <input type="radio" name="deporte" value="0" ng-model="deporte">regular
-                <input type="radio" name="deporte" value="1" ng-model="deporte">bueno
-            </form>
-            <hr>
-            <br>
-            <form>
-                carrera
-                <input type="radio" name="carrera" value="-1" ng-model="carrera" checked>malo
-                <input type="radio" name="carrera" value="0" ng-model="carrera">regular
-                <input type="radio" name="carrera" value="1" ng-model="carrera">bueno
-            </form>
-            <hr>
-            <br>
-            <form>
-                aventura
-                <input type="radio" name="aventura" value="-1" ng-model="aventura" checked>malo
-                <input type="radio" name="aventura" value="0" ng-model="aventura">regular
-                <input type="radio" name="aventura" value="1" ng-model="aventura">bueno
-            </form>
-            <hr>
-            <br>
-            <form>
-                rpg
-                <input type="radio" name="rpg" value="-1" ng-model="rpg" checked>malo
-                <input type="radio" name="rpg" value="0" ng-model="rpg">regular
-                <input type="radio" name="rpg" value="1" ng-model="rpg">bueno
-            </form>
-            <hr>
-            <br>
-            <input type="submit" value="go!" ng-click="sendInfo()"/>
-            <hr>
-            <br>
-            <p>{{data}}</p>
+<html>
+    <head>
+        <meta charset="utf-8">
 
-            <input type="button" ng-click="get_clan()" value="Hacer recomendacion">
-        </div>
-    </div>
-</body>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+
+        <meta name="description" content="">
+        <title>Idem</title>
+
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/estilos.css">
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400, 600" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="angular/app.js"></script>
+    </head>
+    <body class="loginB" ng-app="myApp">
+
+        <nav class="navbar navbar-default navbar-fixed-top menu">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand logo" href="inicio.html"><img src="img/logo-05.png"></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class=""><a  href="inicio.html#Home"></a></li>
+                        
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="registro.html">Registro</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section class="loginS" ng-controller="loginCtrl">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <p class="yo"><img src="img/logo-05.png"></p>
+                       
+                         <form class="FormularioLogin">
+                            <p class="pBt"><input class="campoP" type="text" name="nick" placeholder="Nick name" ng-model="nick"> <br></p>
+                            
+                            <p class="pBt"><input class="campoP" type="password" name="contraseña" placeholder= "Contraseña" ng-model="pass"></p>
+                        
+                            <p class="pBt"><input class="bRegistroL" type="submit" formaction="inicio.html" value="Iniciar Sesión" ng-click="login()"></p>
+
+                            <p class="pBt pLR">¿No tienes cuenta?&nbsp;&nbsp;<input class="bRegistroLR" type="submit" formaction="registro.html" value="Registrarse"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>   
+
+        <section class="footer">
+            <div class="fondF">
+            </div>
+        </section>
+
+
+
+    </body>
+
 </html>
