@@ -47,9 +47,74 @@ app.controller('registroCtrl', function ($window, $scope, $http) {
 });
 
 app.controller('menuCtrl', function ($window, $scope, $http) {
+    var clansito = null;
+    var juegos = null;
+    var recomendador = null;
     $http.get('filtro/getInfo').then(function (res) {
         console.log(res);
+        $scope.username = res.data[0].id_usuario;
+        $scope.clanes = res.data;
+        clansito = res.data[0];
+
+        $http.post('filtro/integrantes', JSON.stringify(res.data[0])).then(function (response) {
+            $scope.integrantes = response.data;
+
+            $http.post('filtro/recomendar', JSON.stringify(response.data)).then(function (respuesta) {
+                console.log("RECOMENDACION");
+                console.log(respuesta.data);
+                recomendador = respuesta.data;
+                $http.get('filtro/juegos').then(function (rows) {
+                    console.log(rows.data);
+                    juegos = rows.data;
+                    $scope.juegos = juegos;
+                });
+            });
+        });
     });
+
+    $scope.obtenerUsuarios = function () {
+        console.log("Obteniendo usuarios");
+        $http.get('user/getAll').then(function (res) {
+            console.log(res.data);
+            $scope.usuarios = res.data;
+        });
+    };
+
+    $scope.agregarAlClan = function () {
+        console.log("agregando al clan");
+        console.log($scope.usuarioSeleccionado.singleSelect);
+        var data = {
+            name: clansito.name,
+            id_usuario:$scope.usuarioSeleccionado.singleSelect
+        };
+        $http.post('/user/agregarAlClan', JSON.stringify(data)).then(function (res) {
+            $window.location.href = 'inicio.html';
+        });
+    };
+
+    $scope.cambiarClan = function (nuevoClan) {
+        clansito.name = nuevoClan;
+        console.log(clansito);
+        $http.get('filtro/getInfo').then(function (res) {
+            console.log(res);
+            $scope.username = res.data[0].id_usuario;
+            $scope.clanes = res.data;
+            $http.post('filtro/integrantes', JSON.stringify(clansito)).then(function (response) {
+                $scope.integrantes = response.data;
+
+                $http.post('filtro/recomendar', JSON.stringify(response.data)).then(function (respuesta) {
+                    console.log("RECOMENDACION");
+                    console.log(respuesta.data);
+                    recomendador = respuesta.data;
+                    $http.get('filtro/juegos').then(function (rows) {
+                        console.log(rows.data);
+                        juegos = rows.data;
+                        $scope.juegos = juegos;
+                    });
+                });
+            });
+        });
+    }
 });
 
 app.controller('gustosCtrl', function ($window, $scope, $http) {

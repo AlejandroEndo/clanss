@@ -25,9 +25,9 @@
     <script src="js/bootstrap.js"></script>
 </head>
 <body class="inicioP" ng-app="myApp">
-<section id="wrapper">
+<section id="wrapper" ng-controller="menuCtrl">
 
-    <div id="sidebar-wrapper" ng-controller="menuCtrl">
+    <div id="sidebar-wrapper">
         <!-- MENU LATERAL -->
         <ul class="sidebar-nav fondis">
             <li class="sidebar-brand">
@@ -50,9 +50,9 @@
             </li>
 
             <!-- CLANES DE LOS QUE EL USUARIO HACE PARTE -->
-            <li class="list-group-item usu">
+            <li class="list-group-item usu" ng-repeat="i in clanes">
                 <div class="colorClan"><img src="img/img-21.png"></div>
-                <a class="poProyCo" href="">Nombre Del Clan</a>
+                <a class="poProyCo" href=""  ng-click="cambiarClan(i.name)">{{i.name}}</a>
 
                 <div class="dropdown sinSom">
                     <button class="punto" type="button" data-toggle="dropdown">
@@ -65,8 +65,8 @@
                 </div>
             </li>
 
-            <form>
-                <button class="nuevoP" type="submit" formaction="crearClan.html"><img src="img/mas-23.png"></button>
+            <form action="crearClan.html">
+                <button class="nuevoP" type="submit"><img src="img/mas-23.png"></button>
             </form>
 
         </ul>
@@ -100,14 +100,14 @@
                 <!--CONTEDENOR 2 MUESTRA USUARIOS-->
                 <div class="col-md-2 sidebar">
                     <div class=" sidebarP">
-                        <div class="participantes">
+                        <div class="participantes" >
 
                             <!-- PARTICIPANTES CLAN -->
                             <h2 class="h2Idea">Participantes</h2>
-                            <li class="list-group-item usu">
+                            <li class="list-group-item usu" ng-repeat="x in integrantes">
 
                                 <div class="colorCate"><img src="img/img-21.png"></div>
-                                <a class="poProyCo" href="">Nombre participante</a>
+                                <a class="poProyCo">{{x.id_usuario}}</a>
 
                                 <div class="dropdown sinSom">
                                     <button class="punto" type="button" data-toggle="dropdown"></span>
@@ -121,7 +121,7 @@
                         </div>
                         <!--COMPARTIR -->
 
-                        <button class="nuevoP" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#compartirP"><img src="img/mas-23.png"></button>
+                        <button class="nuevoP" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#compartirP" ng-click="obtenerUsuarios()"><img src="img/mas-23.png"></button>
 
                         <!-- CONTENIDO DEL POP UP PARA aguegar usuario -->
                         <div class="modal fade" id="compartirP" role="dialog">
@@ -143,15 +143,12 @@
 
                                                 <div class="form-group flecha">
                                                     <label class="label" for="sel1"></label>
-                                                    <select class="form-control campoP leftoP" id="sel1">
-                                                        <option>Busca un participante</option>
-                                                        <option>Selecciona una</option>
-                                                        <option>Selecciona una</option>
-                                                        <option>Selecciona una</option>
+                                                    <select class="form-control campoP leftoP" id="sel1" ng-model="usuarioSeleccionado.singleSelect">
+                                                        <option ng-repeat="a in usuarios">{{a.name}}</option>
                                                     </select>
                                                 </div>
 
-                                                <button type="submit" formaction="#" class="btn btColor btComp">Compartir</button>
+                                                <button type="submit" class="btn btColor btComp" ng-click="agregarAlClan()">Agregar</button>
                                             </form>
                                         </div>
                                     </div>
@@ -174,13 +171,12 @@
                     <!--JUEGOS IDEALES-->
                     <section class="ideales">
                         <div class="c">
-
-                            <div class="colk SeccionCategoria">
+                            <div class="colk SeccionCategoria" ng-repeat="b in juegos">
                                 <section class="categoriasT">
                                     <div class="colorUni"></div>
-                                    <div class="imagenJue"><img src="img/img-21.png"></div>
-                                    <p class="descriC">Nombre del juego</p>
-                                    <p class="descriC topd">Tipo de juego</p>
+                                    <div class="imagenJue"><img src="{{b.image}}"></div>
+                                    <p class="descriC">{{b.name}}</p>
+                                    <p class="descriC topd">{{b.gender}}</p>
                                 </section>
                             </div>
 
@@ -196,7 +192,7 @@
                             <div class="colk SeccionCategoria">
                                 <section class="categoriasT">
                                     <div class="colorUni"></div>
-                                    <div class="imagenJue"><img src="img/img-21.png"></div>
+                                    <div class="imagenJue"><img src="img/wow.png"></div>
                                     <p class="descriC">Nombre del juego</p>
                                     <p class="descriC topd">Tipo de juego</p>
                                 </section>

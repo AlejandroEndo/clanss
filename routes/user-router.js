@@ -23,8 +23,10 @@ router.post('/login', function (req, res) {
         userControl.login(nick, pass, function (err, result) {
             if(!err){
                 res.json(result);
-                root.setUsuario(result);
-                console.log(result);
+                var string = JSON.stringify(result);
+                var resultado = JSON.parse(string);
+                root.setUsuario(resultado[0]);
+                console.log(resultado[0]);
             } else {
                 res.json(err);
             }
@@ -72,6 +74,30 @@ router.post('/gustos', function (req, res) {
             res.json(false);
         }
     })
+});
+
+router.get('/getAll', function (req, res) {
+    userControl.getAll(function (err, rows) {
+        if(!err){
+            res.json(rows);
+        } else {
+            res.json(err);
+        }
+    });
+});
+
+router.post('/agregarAlClan', function (req, res) {
+    var data = {
+        name: req.body.name,
+        id_usuario: req.body.id_usuario
+    };
+    userControl.agregarAlClan(data, function (err) {
+        if(!err){
+            res.json(true);
+        } else {
+            res.json(false);
+        }
+    });
 });
 
 module.exports = router;

@@ -47,3 +47,37 @@ exports.recomendar = function (data, callback) {
 
     }
 };
+
+exports.getClanes = function (data, callback) {
+    console.log(data);
+    db.getConnection().query('SELECT * FROM clanssclanes WHERE id_usuario = ?', data, function (err, rows) {
+        //console.log(rows);
+        console.log(err);
+        if(!err){
+            console.log(rows);
+            return callback(false, rows);
+        } else {
+            return callback(true);
+        }
+    });
+};
+
+exports.getIntegrantes = function (data, callback) {
+    db.getConnection().query('SELECT * FROM clanssclanes WHERE name = ?', data, function (err, rows) {
+        if(!err){
+            return callback(false, rows);
+        } else {
+            return callback(true);
+        }
+    });
+};
+
+exports.juegos = function (callback) {
+    db.getConnection().query('SELECT * FROM clanssjuegos', function (err, rows) {
+        if(!err){
+            return callback(false, rows);
+        } else {
+            return callback(true);
+        }
+    });
+};

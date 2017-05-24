@@ -6,6 +6,7 @@ var express = require('express');
 var bodyparser = require('body-parser');
 
 var controller = require('../controller/filtro-controller');
+var root = require('../server');
 
 var router = express.Router();
 router.use(bodyparser.urlencoded({extended: false}));
@@ -14,21 +15,45 @@ router.get('/data', function (req, res) {
 
 });
 
-router.post('/getInfo', function (req, res) {
-    var data = req.body;
-    console.log(data);
+router.get('/getInfo', function (req, res) {
+    console.log("USUARIO Para GEt INFO");
+    console.log(root.getUsuario());
 
-    controller.addPreferences(data, function (err, recomendacion) {
-        if(!err) {
-            res.json(recomendacion);
+    if(root.getUsuario() != undefined){
+        controller.getClanes(root.getUsuario().nick, function (err, result) {
+            if(!err){
+                res.json(result);
+            } else {
+                res.json(false);
+            }
+        });
+    }
+});
+
+router.post('/integrantes', function (req, res) {
+    var clan = req.body.name;
+
+    controller.getIntegrantes(clan, function (err, rows) {
+        if(!err){
+            res.json(rows);
         } else {
-            res.json(err);}
+            res.json(false);
+        }
     });
 });
 
 router.get('/get_clan', function (req, res) {
     controller.clanear(function (err, miembros) {
         res.json(miembros);
+    });
+});
+
+router.get('/juegos', function (req, res) {
+    controller.juegos(function (err, juegos) {
+        if(!err)
+            res.json(juegos);
+        else
+            res.json(err);
     });
 });
 

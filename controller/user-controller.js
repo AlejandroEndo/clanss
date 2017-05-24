@@ -42,3 +42,24 @@ exports.gustos = function (data, callback) {
         callback(null, rows);
     });
 };
+
+exports.getAll = function(callback){
+    db.getConnection().query('SELECT * FROM clanssusuarios', function (err, rows) {
+        if(err){
+            return callback(true);
+        } else {
+            return callback(false, rows);
+        }
+    });
+};
+
+exports.agregarAlClan = function (data, callback) {
+    db.getConnection().query('INSERT INTO clanssclanes SET ?', data, function (err, rows) {
+        if(err){
+            console.log(err);
+            return callback(err);
+        }
+        console.log(rows);
+        callback(null, rows);
+    });
+};
