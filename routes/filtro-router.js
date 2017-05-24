@@ -14,7 +14,7 @@ router.get('/data', function (req, res) {
 
 });
 
-router.post('/informacion', function (req, res) {
+router.post('/getInfo', function (req, res) {
     var data = req.body;
     console.log(data);
 

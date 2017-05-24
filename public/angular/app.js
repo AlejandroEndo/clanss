@@ -46,6 +46,12 @@ app.controller('registroCtrl', function ($window, $scope, $http) {
     }
 });
 
+app.controller('menuCtrl', function ($window, $scope, $http) {
+    $http.get('filtro/getInfo').then(function (res) {
+        console.log(res);
+    });
+});
+
 app.controller('gustosCtrl', function ($window, $scope, $http) {
     $scope.gustar = function () {
         var s = 0;
