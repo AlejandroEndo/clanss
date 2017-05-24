@@ -24,8 +24,21 @@ exports.login = function (nick, pass, callback) {
 exports.registro = function (data, callback) {
     db.getConnection().query('INSERT INTO clanssusuarios SET ?', data, function (err, rows) {
         if(err){
+            console.log(err);
             return callback(err);
         }
+        console.log(rows);
+        callback(null, rows);
+    });
+};
+
+exports.gustos = function (data, callback) {
+    db.getConnection().query('INSERT INTO clanssgustos SET ?', data, function (err, rows) {
+        if(err){
+            console.log(err);
+            return callback(err);
+        }
+        console.log(rows);
         callback(null, rows);
     });
 };

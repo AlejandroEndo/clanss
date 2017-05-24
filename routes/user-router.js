@@ -7,6 +7,7 @@ var bodyparser = require('body-parser');
 var fs = require('fs');
 
 var userControl = require('../controller/user-controller');
+var root = require('../server');
 
 var router = express.Router();
 router.use(bodyparser.urlencoded({extended:false}));
@@ -22,6 +23,7 @@ router.post('/login', function (req, res) {
         userControl.login(nick, pass, function (err, result) {
             if(!err){
                 res.json(result);
+                root.setUsuario(result);
                 console.log(result);
             } else {
                 res.json(err);
@@ -33,13 +35,43 @@ router.post('/login', function (req, res) {
 router.post('/registro', function (req, res) {
     var data = req.body;
 
+    console.log(data);
+
     userControl.registro(data, function (err) {
+        if(!err){
+            console.log("Esta es la data");
+            console.log(data);
+            root.setUsuario(data);
+            res.json(true);
+        } else {
+            res.json(false);
+        }
+    });
+});
+
+router.post('/gustos', function (req, res) {
+
+    console.log(root.getUsuario());
+    var data = {
+        shooter: req.body.s,
+        estrategia: req.body.e,
+        simulacion: req.body.si,
+        deporte : req.body.d,
+        carrera: req.body.c,
+        aventura: req.body.a,
+        rpg: req.body.r,
+        id_usuario: root.getUsuario().nick
+    };
+
+    console.log(data);
+
+    userControl.gustos(data, function (err) {
         if(!err){
             res.json(true);
         } else {
-            res.json(true);
+            res.json(false);
         }
-    });
+    })
 });
 
 module.exports = router;

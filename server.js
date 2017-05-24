@@ -10,6 +10,15 @@ var db = require('./data-base');
 var filtro = require('./routes/filtro-router');
 var user = require('./routes/user-router');
 
+var usuario;
+
+exports.setUsuario = function (nuevo) {
+    usuario = nuevo;
+};
+exports.getUsuario = function () {
+    return usuario;
+};
+
 var app = express();
 
 app.use(morgan('dev'));

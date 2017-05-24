@@ -12,12 +12,15 @@
 
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/estilos.css">
-        <script src="../../../Final_CHI/clans/js/jquery.js"></script>
-        <script src="../../../Final_CHI/clans/js/bootstrap.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400, 600" rel="stylesheet">
 
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="angular/app.js"></script>
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.js"></script>
+
     </head>
-    <body class="loginB">
+    <body class="loginB" ng-app="myApp">
 
         <nav class="navbar navbar-default navbar-fixed-top menu">
             <div class="container">
@@ -41,17 +44,15 @@
         </nav>
 
         <section class="loginS">
-            <div class="container">
+            <div class="container" ng-controller="gustosCtrl">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <p class="yoTx">Tipo de Juegos Que me gusta</p>
                         <form class=" FormularioLogin">
 
-
-                   <div class="form-group flecha">
+                            <div class="form-group flecha">
                                 <label class="label" for="sel1 ">Shooter:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </label>
-                                <select class="form-control campoP leftoP" id="sel1">
-                                    <option>¿Soy?</option>
+                                <select class="form-control campoP leftoP" id="sel1" ng-model="shooter.singleSelect">
                                     <option>Bueno</option>
                                     <option>Regural</option>
                                     <option>Malo</option>
@@ -59,8 +60,7 @@
                             </div>
                             <div class="form-group flecha">
                                 <label class="label" for="sel1 ">Estrategia:&nbsp&nbsp&nbsp</label>
-                                <select class="form-control campoP leftoP" id="sel1">
-                                    <option>¿Soy?</option>
+                                <select class="form-control campoP leftoP" id="sel1" ng-model="estrategia.singleSelect">
                                     <option>Bueno</option>
                                     <option>Regural</option>
                                     <option>Malo</option>
@@ -68,8 +68,7 @@
                             </div>
                             <div class="form-group flecha">
                                 <label class="label" for="sel1 ">Simulacion:&nbsp&nbsp</label>
-                                <select class="form-control campoP leftoP" id="sel1">
-                                    <option>¿Soy?</option>
+                                <select class="form-control campoP leftoP" id="sel1"ng-model="simulacion.singleSelect">
                                     <option>Bueno</option>
                                     <option>Regural</option>
                                     <option>Malo</option>
@@ -77,8 +76,7 @@
                             </div>
                             <div class="form-group flecha">
                                 <label class="label" for="sel1 ">Deporte:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-                                <select class="form-control campoP leftoP" id="sel1">
-                                    <option>¿Soy?</option>
+                                <select class="form-control campoP leftoP" id="sel1" ng-model="deporte.singleSelect">
                                     <option>Bueno</option>
                                     <option>Regural</option>
                                     <option>Malo</option>
@@ -86,8 +84,7 @@
                             </div>
                             <div class="form-group flecha">
                                 <label class="label" for="sel1 ">Carrera:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </label>
-                                <select class="form-control campoP leftoP" id="sel1">
-                                    <option>¿Soy?</option>
+                                <select class="form-control campoP leftoP" id="sel1" ng-model="carrera.singleSelect">
                                     <option>Bueno</option>
                                     <option>Regural</option>
                                     <option>Malo</option>
@@ -95,8 +92,7 @@
                             </div>
                             <div class="form-group flecha">
                                 <label class="label" for="sel1 ">Aventura:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-                                <select class="form-control campoP leftoP" id="sel1">
-                                     <option>¿Soy?</option>
+                                <select class="form-control campoP leftoP" id="sel1" ng-model="aventura.singleSelect">
                                     <option>Bueno</option>
                                     <option>Regural</option>
                                     <option>Malo</option>
@@ -104,8 +100,7 @@
                             </div>
                             <div class="form-group flecha">
                                 <label class="label" for="sel1 ">Rpg:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-                                <select class="form-control campoP leftoP" id="sel1">
-                                     <option>¿Soy?</option>
+                                <select class="form-control campoP leftoP" id="sel1" ng-model="rpg.singleSelect">
                                     <option>Bueno</option>
                                     <option>Regural</option>
                                     <option>Malo</option>
@@ -113,13 +108,10 @@
                             </div>
 
 
-                            <p class="pBt pLR"><input class="conti" type="submit" formaction="inicio.html" value="Continuar"></p>
+                            <p class="pBt pLR"><input class="conti" type="submit" formaction="inicio.html" value="Continuar" ng-click="gustar()"></p>
 
                         </form>
-
-
-
-
+                        </div>
                     </div>
                 </div>
             </div>
