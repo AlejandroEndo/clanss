@@ -171,15 +171,14 @@
                     <!--JUEGOS IDEALES-->
                     <section class="ideales">
                         <div class="c">
-                            <div class="colk SeccionCategoria" ng-repeat="b in juegos">
-                                <section class="categoriasT">
+                            <div class="colk SeccionCategoria" ng-repeat="b in juegos | orderBy: '-value'">
+                                <section class="categoriasT" ng-if="b.ramM <= monda.ram &&  b.os >= monda.os">
                                     <div class="colorUni"></div>
                                     <div class="imagenJue"><img src="{{b.image}}"></div>
                                     <p class="descriC">{{b.name}}</p>
                                     <p class="descriC topd">{{b.gender}}</p>
                                 </section>
                             </div>
-
                         </div>
                     </section>
                     <!--JUEGOS COMPATIBILIDAD-->

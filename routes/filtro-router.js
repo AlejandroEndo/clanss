@@ -71,7 +71,7 @@ router.post('/recomendar', function (req, res) {
 
     controller.recomendar(data, function (err, r) {
         index++;
-        console.log(r);
+        //console.log(r);
         if(r != undefined) {
             s += r.shooter;
             e += r.estrategia;
@@ -91,7 +91,7 @@ router.post('/recomendar', function (req, res) {
                     deporte: d,
                     carrera: c,
                     aventura: a,
-                    rpg: rpg,
+                    rpg: rpg
                 };
                 res.json(recomendar);
             } else {

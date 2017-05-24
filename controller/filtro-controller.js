@@ -36,7 +36,6 @@ exports.clanear = function (callback) {
 
 exports.recomendar = function (data, callback) {
     for(var i = 0; i < data.length; i++){
-
         db.getConnection().query('SELECT * FROM clanssgustos WHERE id_usuario = ?', data[i].id_usuario, function (err, rows) {
 
             var string = JSON.stringify(rows);

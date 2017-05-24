@@ -20,7 +20,7 @@
         <script src="js/bootstrap.js"></script>
 
     </head>
-    <body class="loginB">
+    <body class="loginB" ng-app="myApp">
 
         <nav class="navbar navbar-default navbar-fixed-top menu">
             <div class="container">
@@ -43,77 +43,21 @@
             </div>
         </nav>
 
-        <section class="loginS">
+        <section class="loginS" ng-controller="clanCtrl">
             <div class="container">
                 <div class="row">
                     <div class="col-8">
                         <p class="yo"></p>
                         
                         <form class=" FormularioLogin">
-                            
-                            <p class="pBt">  
-                               <label class="fileContainer">
-                                <input type="file"/>
-                            </label></p>
 
-                        
+                            <p class="pBt" ><input class="campoP" type="text" name="name" placeholder="Nombre del Clan" ng-model="name"> <br></p>
 
-                            <p class="pBt" ><input class="campoP" type="text" name="nombre" placeholder="Nombre del Clan"> <br></p>
-
-                            <p class="pBt" ><input class="campoP" type="email" name="correo" placeholder="Correo electrónico"> <br></p>
+                            <p class="pBt" ><input class="campoP" type="text" name="id_usuario" placeholder="Nick name" ng-model="id_usuario"> <br></p>
                                               
-                            <p class="pBt" ><input class="campoP"type="button" data-toggle="modal" data-target="#compartirP" value="Buscar Participante"> </p>
-                                               
-                                                                    
-                
+                            <p class="pBt"><input class="bRegistroL" type="submit" value="Continuar" ng-click="crearClan()"></p>
 
-                            <p class="pBt"><input class="bRegistroL" type="submit" formaction="inicio.html" value="Continuar"></p>
-                            
-                            
                         </form>
-                        
-                      <!--COMPARTIR -->
-
-                
-            <!-- CONTENIDO DEL POP UP PARA aguegar usuario -->
-            <div class="modal fade" id="compartirP" role="dialog">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content fondoP">
-                        <div class="modal-header sombraP">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-                            <h4 class="modal-title tituloP">Nuevo Participante</h4>
-                        </div>
-                        <div class="modal-body">
-                            <!--ecribir nombre del proyecto -->
-
-                            <div class="form-group col nombrePc com flecha">
-                                <form>
-
-                                    <div class="form-group flecha">
-                                        <label class="label" for="sel1 "></label>
-                                        <select class="form-control campoP leftoP" id="sel1">
-                                            <option>Busca un participante</option>
-                                            <option>Selecciona una</option>
-                                            <option>Selecciona una</option>
-                                            <option>Selecciona una</option>
-                                        </select>
-                                    </div>
-
-                                    <button type="submit" formaction="#" class="btn btColor btComp">Compartir</button>
-                                </form>
-                            </div>  
-                        </div>         
-                        
-                        <div class="modal-footer">
-                            <!--con data-dismiss="modal" cierra la ventana-->
-                            <button type="submit" class="btn btColor" data-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
-                </div>
-            </div> 
-
-
 
                     </div>
                 </div>

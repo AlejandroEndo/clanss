@@ -63,3 +63,19 @@ exports.agregarAlClan = function (data, callback) {
         callback(null, rows);
     });
 };
+
+exports.getUser = function (data, callback) {
+    console.log("DATAAAA");
+    console.log(data);
+    db.getConnection().query('SELECT * FROM clanssusuarios WHERE = ?', data, function (err, rows) {
+        if(err){
+            return callback(true);
+        } else {
+            return callback(false, rows);
+        }
+    });
+};
+
+exports.crearClan = function (data, callback) {
+    db.getConnection().query();
+};

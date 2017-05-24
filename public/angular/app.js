@@ -50,11 +50,23 @@ app.controller('menuCtrl', function ($window, $scope, $http) {
     var clansito = null;
     var juegos = null;
     var recomendador = null;
+    var user = null;
     $http.get('filtro/getInfo').then(function (res) {
         console.log(res);
         $scope.username = res.data[0].id_usuario;
         $scope.clanes = res.data;
         clansito = res.data[0];
+
+        var ususuario = $scope.username;
+        console.log("ususuario");
+        console.log(ususuario);
+        $http.get('user/usuario').then(function (monda) {
+            console.log(monda);
+            user = monda.data;
+            console.log("mi usuario");
+            console.log(user);
+            $scope.monda = user;
+        });
 
         $http.post('filtro/integrantes', JSON.stringify(res.data[0])).then(function (response) {
             $scope.integrantes = response.data;
@@ -66,6 +78,30 @@ app.controller('menuCtrl', function ($window, $scope, $http) {
                 $http.get('filtro/juegos').then(function (rows) {
                     console.log(rows.data);
                     juegos = rows.data;
+                    for (var j = 0; j < juegos.length; j++) {
+                        if (juegos[j].gender == 'aventura'){
+                            console.log("Encontre Uno");
+                            juegos[j].value = recomendador.aventura;
+                        }
+                        if (juegos[j].gender == 'carrera'){console.log("Encontre Uno");
+                            juegos[j].value = recomendador.carrera;
+                        }
+                        if (juegos[j].gender == 'shooter'){console.log("Encontre Uno");
+                            juegos[j].value = recomendador.shooter;
+                        }
+                        if (juegos[j].gender == 'deporte'){console.log("Encontre Uno");
+                            juegos[j].value = recomendador.deporte;
+                        }
+                        if (juegos[j].gender == 'estrategia'){console.log("Encontre Uno");
+                            juegos[j].value = recomendador.estrategia;
+                        }
+                        if (juegos[j].gender == 'simulacion'){console.log("Encontre Uno");
+                            juegos[j].value = recomendador.simulacion;
+                        }
+                        if (juegos[j].gender == 'rpg'){console.log("Encontre Uno");
+                            juegos[j].value = recomendador.rpg;
+                        }
+                    }
                     $scope.juegos = juegos;
                 });
             });
@@ -158,6 +194,19 @@ app.controller('gustosCtrl', function ($window, $scope, $http) {
             }
         });
     }
+});
+
+app.controller('clanCtrl', function ($window, $scope, $http) {
+    $scope.crearClan = function () {
+        var data = {
+            name: $scope.name,
+            id_usuario: $scope.id_usuario
+        };
+
+        $http.post('/user/crearClan', JSON.stringify(data)).then(function (res) {
+            $window.location.href = 'inicio.html';
+        });
+    };
 });
 
 app.controller('myCtrl', function ($window, $scope, $http) {

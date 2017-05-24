@@ -100,4 +100,22 @@ router.post('/agregarAlClan', function (req, res) {
     });
 });
 
+router.get('/usuario', function (req, res) {
+    console.log("EL USUARIO QUE ESTOY DEVOLVIENDO ES ESTA MONDA");
+    console.log(root.getUsuario());
+    var monda = root.getUsuario();
+    res.json(monda);
+});
+
+router.post('/crearClan', function (req, res) {
+    var data = req.body;
+
+    userControl.agregarAlClan(data, function (err) {
+        if(!err){
+            res.json(true);
+        } else {
+            res.json(false);
+        }
+    });
+});
 module.exports = router;
