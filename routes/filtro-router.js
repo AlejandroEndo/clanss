@@ -11,10 +11,6 @@ var root = require('../server');
 var router = express.Router();
 router.use(bodyparser.urlencoded({extended: false}));
 
-router.get('/data', function (req, res) {
-
-});
-
 router.get('/getInfo', function (req, res) {
     console.log("USUARIO Para GEt INFO");
     console.log(root.getUsuario());
